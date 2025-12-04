@@ -1,0 +1,27 @@
+INSERT INTO students (first_name, last_name, age, gender, email, phone) VALUES
+('Lakshmi', 'Parvathi', 23, 'Female', 'lakshmi@gmail.com', '9876543210'),
+('Rahul', 'Kumar', 21, 'Male', 'rahul@gmail.com', '9876543001');
+INSERT INTO courses (course_name, fee) VALUES
+('Java Full Stack', 15000),
+('Data Science', 25000),
+('Python Programming', 12000);
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
+(1, 1, '2025-01-01'),
+(2, 2, '2025-01-05');
+
+SELECT * FROM students;
+SELECT * FROM courses;
+
+SELECT s.first_name, s.last_name, c.course_name, e.enrollment_date
+FROM enrollments e
+JOIN students s ON e.student_id = s.student_id
+JOIN courses c ON e.course_id = c.course_id;
+
+SELECT c.course_name, COUNT(e.student_id) AS total_students
+FROM enrollments e
+JOIN courses c ON e.course_id = c.course_id
+GROUP BY c.course_name;
+
+UPDATE students
+SET email = 'newemail@gmail.com'
+WHERE student_id = 1;
